@@ -92,6 +92,7 @@ if __name__ == '__main__':
     print("Available command: mkdir, upload, download, exit")
     while True:
         command = input("Please enter the command: ")
+        print("command = {}".format(command))
         if command == "mkdir":
             makeDirectory()
         elif command == "upload":
