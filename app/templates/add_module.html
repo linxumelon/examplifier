@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Create Directory</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.modcode }}
+            {{ form.submit(class_=AddModuleForm) }}
+        </p>
+    </form>
+{% endblock %}
