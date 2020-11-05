@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ module }} Test Papers</h1>
+    {% for test_paper in test_papers %}
+    <div><a href="/download/{{ module }}/{{ test_paper.name }}">{{ test_paper.name }}</a></div>
+    {% endfor %}
+{% endblock %}

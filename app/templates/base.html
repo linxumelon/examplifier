@@ -1,0 +1,14 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Examplifier</title>
+      {% else %}
+      <title>Welcome to Examplifier</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Examplifier: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
