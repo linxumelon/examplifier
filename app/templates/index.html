@@ -2,6 +2,8 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
+    <div>View Teaching Modules: <a href="/teaching_modules">view</a></div>
     <div>Create Module: <a href="/add_module">create</a></div>
     <div>Upload Test File: <a href="/upload_test_file">upload</a></div>
+    <div>View Test Files: <a href="/query_test_papers">view module wise</a></div>
 {% endblock %}

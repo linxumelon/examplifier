@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for mod in modules %}
+    <div><p>{{ mod.modcode }} 
+        <a href="/view_test_papers/{{ mod.modcode }} ">Vies Test Papers</a> 
+    </p></div>
+    {% endfor %}
+{% endblock %}

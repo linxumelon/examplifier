@@ -12,10 +12,10 @@ class LoginForm(FlaskForm):
 
 class UploadTestFileForm(FlaskForm):
     modcode = StringField('Module Code', validators=[DataRequired()])
-    filename = StringField('File Name: ', validators=[DataRequired()])
     testfile = FileField(validators=[FileRequired('File was empty!')])
     submit = SubmitField('Upload')
 
 class AddModuleForm(FlaskForm):
     modcode = StringField('Modcode', validators=[DataRequired()])
     submit = SubmitField('Add')
+

@@ -28,9 +28,8 @@ def load_user(id):
 class Module(db.Model):
     __tablename__='module'
     code = db.Column(db.String(64), primary_key=True)
-    dir = db.Column(db.String(128))
     def __repr__(self):
-        return '<Module {} {}>'.format(self.code, self.dir)
+        return '<Module {}>'.format(self.code)
 
 class Teaches(db.Model):
     __tablename__='teache'
@@ -56,18 +55,16 @@ class TestPaper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     modcode = db.Column(db.String(64), db.ForeignKey('module.code'), index=True)
     name = db.Column(db.String(64), index=True)
-    fileurl = db.Column(db.String(120))
     def set_fileurl(self, url):
         self.fileurl = url
     def __repr__(self):
-        return '<Test Paper {} {}>'.format(self.modcode, self.fileurl)
+        return '<Test Paper {}>'.format(self.modcode)
 
 
 class StudentSubmission(db.Model):
     __tablename__='studentsubmission'
     id = db.Column(db.Integer, primary_key=True)
     modcode = db.Column(db.String(64), db.ForeignKey('module.code'), index=True)
-    fileurl = db.Column(db.String(120), index=True, unique=True)
     studentid = db.Column(db.String(64))
     def __repr__(self):
-        return '<Student Submission {} {} {}'.format(self.modcode, self.studentid, self.fileurl)
+        return '<Student Submission {} {}'.format(self.modcode, self.studentid)
