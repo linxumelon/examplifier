@@ -1,7 +1,7 @@
 import os
 import sys
 from flask_login import current_user, login_user, login_required
-from flask import render_template, flash, redirect, url_for, request, send_from_directory
+from flask import render_template, flash, redirect, url_for, request, send_from_directory, Response
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
 from app import app
@@ -9,6 +9,7 @@ from app import db
 from app.forms import LoginForm, UploadTestFileForm, AddModuleForm
 from app.models import User, Module, Teaches, Takes, TestPaper, StudentSubmission
 from sqlalchemy import and_, or_, not_
+import cv2
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg'}
 BASEDIR = os.path.dirname(app.instance_path)
@@ -131,3 +132,26 @@ def IsCurrentUserTeachingMod(modcode):
         flash("No teaching record for this module. \n Please add module first if you are teaching this module. ")
         return False
     return True
+
+camera = cv2.VideoCapture(0)
+
+def gen_frames():
+    while True:
+        success, frame = camera.read()  # read the camera frame
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+
+
+@app.route('/streaming')
+def streaming():
+    return render_template('streaming.html')
+
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
