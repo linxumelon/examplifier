@@ -79,8 +79,12 @@ def socket_monitoring():
 
         print(("**************TIME={} min STATISTICS*****************").format(step * sleep_time / 60))
         print(("number of sockets connections: {}").format(len(current_sockets)))
-        print("new connections not found in at the beginning: ")
-        print(new_connection)
+        if len(new_connection) == 0:
+            print("no new connection found")
+        else:
+            print("new connections not found in at the beginning: ")
+            print(new_connection)
+
         step += 1
 
 
