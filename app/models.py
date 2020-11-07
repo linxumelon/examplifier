@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(64), index=True, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     identity = db.Column(db.String(16), default="Student")
@@ -23,7 +23,7 @@ class User(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    return User.query.get(id)
 
 class Module(db.Model):
     __tablename__='module'
