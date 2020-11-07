@@ -68,3 +68,9 @@ class StudentSubmission(db.Model):
     studentid = db.Column(db.String(64))
     def __repr__(self):
         return '<Student Submission {} {}'.format(self.modcode, self.studentid)
+
+# class NetStatistics(db.Model):
+#     __table__ = 'netstatistics'
+#     id = db.Column(db.Integer, primary_key=True)
+#     studentid = db.Column(db.String(64))
+#     occurence = db.Column(db.Time)

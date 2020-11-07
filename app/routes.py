@@ -10,6 +10,7 @@ from app.forms import LoginForm, UploadTestFileForm, AddModuleForm
 from app.models import User, Module, Teaches, Takes, TestPaper, StudentSubmission
 from sqlalchemy import and_, or_, not_
 import cv2
+from app.netStat import socket_monitoring
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg'}
 BASEDIR = os.path.dirname(app.instance_path)
